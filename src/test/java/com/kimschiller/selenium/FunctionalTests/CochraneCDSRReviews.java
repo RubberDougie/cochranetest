@@ -29,8 +29,20 @@ public class CochraneCDSRReviews extends PageObject {
 	@FindBy(xpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/section/div[1]/div/div/div/div[2]/div/div[1]/div[1]/ul/li[8]/a/span[1]")
 	private WebElement moreTabClickableText;
 
-	@FindBy(xpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/section/div[1]/div/div/div/div[2]/div/div[1]/div[1]/ul/li[8]/div/ul/li[1]/a/span[1]")
-	private WebElement clinicalAnswersClickableText;
+	@FindBy(xpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/section/div[1]/div/div/div/div[2]/div/div[1]/div[1]/ul/li[8]/div/ul/li[3]/a/span[1]")
+	private WebElement clinicalAnswersClickableTextUnderMore; // for 900x900
+
+	@FindBy(xpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/div/section/div[1]/div/div/div/div[2]/div/div[1]/div[2]/form/div[1]/ul/li/ul/li/span/a")
+	private WebElement customDateRangeAssertText;
+
+	@FindBy(id = "customRangeFrom")
+	private WebElement startDateInput;
+
+	@FindBy(id = "customRangeTo")
+	private WebElement endDateInput;
+
+	@FindBy(id = "applyCustomRange")
+	private WebElement applyCustomRangeButton;
 
 	/*
 	 * 
@@ -70,6 +82,18 @@ public class CochraneCDSRReviews extends PageObject {
 		// actions.moveToElement(cochraneProtocolsTab).click().perform();
 	}
 
+	public void navigateToClinicalAnswers() {
+		Actions actions = new Actions(driver);
+		actions.moveToElement(moreTabClickableText).click().perform();
+		actions.moveToElement(clinicalAnswersClickableTextUnderMore).click().perform();
+	}
+
+	public void enterAndApplyDateRange1() {
+		startDateInput.sendKeys("23/01/2011");
+		endDateInput.sendKeys("23/01/2019");
+		applyCustomRangeButton.click();
+	}
+
 	public WebElement getCochraneReviewsTab() {
 		return cochraneReviewsTab;
 	}
@@ -80,6 +104,14 @@ public class CochraneCDSRReviews extends PageObject {
 
 	public WebElement getCochraneProtocolsAssertChecker() {
 		return cochraneProtocolsAssertChecker;
+	}
+
+	public WebElement getCustomDateRangeAssertText() {
+		return customDateRangeAssertText;
+	}
+
+	public WebElement getMoreTabClickableText() {
+		return moreTabClickableText;
 	}
 
 	/*
