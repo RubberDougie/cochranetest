@@ -44,28 +44,6 @@ public class CochraneCDSRReviews extends PageObject {
 	@FindBy(id = "applyCustomRange")
 	private WebElement applyCustomRangeButton;
 
-	/*
-	 * 
-	 * @FindBy(id = "firstname") private WebElement firstName;
-	 * 
-	 * @FindBy(id = "firstname") private WebElement firstName;
-	 * 
-	 * @FindBy(id = "firstname") private WebElement firstName;
-	 * 
-	 * @FindBy(id = "firstname") private WebElement firstName;
-	 * 
-	 * @FindBy(id = "firstname") private WebElement firstName;
-	 * 
-	 * @FindBy(id = "lastname") private WebElement lastName;
-	 * 
-	 * @FindBy(id = "address") private WebElement address;
-	 * 
-	 * @FindBy(id = "zipcode") private WebElement zipCode;
-	 * 
-	 * @FindBy(id = "signup") private WebElement submitButton;
-	 * 
-	 */
-
 	public CochraneCDSRReviews(WebDriver driver) {
 		super(driver);
 	}
@@ -91,6 +69,12 @@ public class CochraneCDSRReviews extends PageObject {
 	public void enterAndApplyDateRange1() {
 		startDateInput.sendKeys("23/01/2011");
 		endDateInput.sendKeys("23/01/2019");
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		applyCustomRangeButton.click();
 	}
 
@@ -113,21 +97,4 @@ public class CochraneCDSRReviews extends PageObject {
 	public WebElement getMoreTabClickableText() {
 		return moreTabClickableText;
 	}
-
-	/*
-	 * public boolean isInitialized() { return firstName.isDisplayed(); }
-	 * 
-	 * public void enterName(String firstName, String lastName) {
-	 * this.firstName.clear(); this.firstName.sendKeys(firstName);
-	 * 
-	 * this.lastName.clear(); this.lastName.sendKeys(lastName); }
-	 * 
-	 * public void enterAddress(String address, String zipCode) {
-	 * this.address.clear(); this.address.sendKeys(address);
-	 * 
-	 * this.zipCode.clear(); this.zipCode.sendKeys(zipCode); }
-	 * 
-	 * public ReceiptPage submit() { submitButton.click(); return new
-	 * ReceiptPage(driver); }
-	 */
 }

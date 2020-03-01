@@ -56,8 +56,6 @@ public class CochraneCDSRReviewsTest {
 		wait.until(ExpectedConditions.attributeContains(cochraneCDSRReviews.getCochraneProtocolsAssertChecker(),
 				"class", ""));
 
-		System.out.println(cochraneCDSRReviews.getCochraneProtocolsAssertChecker().getText());
-
 		String assertValue = cochraneCDSRReviews.getCochraneProtocolsAssertChecker().getText()
 				.contains("Clinical Answers") ? "True" : "False";
 		assertEquals("True", assertValue);
