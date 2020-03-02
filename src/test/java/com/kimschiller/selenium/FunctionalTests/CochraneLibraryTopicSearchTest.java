@@ -33,6 +33,7 @@ public class CochraneLibraryTopicSearchTest {
 		assertTrue(cochraneLibraryTopicSearchResult.isInitialized());
 
 		assertEquals("Gastroenterology & hepatology", cochraneLibraryTopicSearchResult.getTopicTitle1().getText());
-	}
 
+		driver.close();
+	}
 }
