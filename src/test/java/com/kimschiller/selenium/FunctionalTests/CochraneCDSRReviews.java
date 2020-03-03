@@ -1,5 +1,6 @@
 package com.kimschiller.selenium.FunctionalTests;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -43,6 +44,18 @@ public class CochraneCDSRReviews extends PageObject {
 
 	@FindBy(id = "applyCustomRange")
 	private WebElement applyCustomRangeButton;
+
+	@FindBy(xpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/div/section/div[1]/div/div/div/div[2]/div/div[1]/div[2]/form/h2/span[1]")
+	private WebElement resultsNumber;
+
+	@FindBy(xpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/div/section/div[1]/div/div/div/div[2]/div/div[1]/div[2]/form/div[4]/div[2]/div[2]/div/div")
+	private WebElement maxNumberPerPageSelector;
+
+	@FindBy(xpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/div/section/div[1]/div/div/div/div[2]/div/div[1]/div[2]/form/div[4]/div[2]/div[2]/div/ul")
+	private WebElement maxNumberPerPageSelectorList;
+
+	@FindBy(xpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/div/section/div[1]/div/div/div/div[2]/div/div[1]/div[2]/form/div[4]/div[2]/div[2]/div/ul/li[3]")
+	private WebElement maxPerPageSelector50;
 
 	public CochraneCDSRReviews(WebDriver driver) {
 		super(driver);
@@ -96,5 +109,32 @@ public class CochraneCDSRReviews extends PageObject {
 
 	public WebElement getMoreTabClickableText() {
 		return moreTabClickableText;
+	}
+
+	public WebElement getMaxNumberPerPageSelector() {
+		return maxNumberPerPageSelector;
+	}
+
+	public WebElement getMaxNumberPerPageSelectorList() {
+		return maxNumberPerPageSelectorList;
+	}
+
+	public WebElement getMaxPerPageSelector50() {
+		return maxPerPageSelector50;
+	}
+
+	public WebElement getLowerOfNthOrRemainderResultOnPage(int maxResultsPerPage, int resultsNumber, int pageNumber) {
+		int highestPossibleNumberOnPageAssumingFull = maxResultsPerPage * pageNumber;
+
+		int highestResultOnPage;
+		if (resultsNumber >= highestPossibleNumberOnPageAssumingFull) {
+			highestResultOnPage = highestPossibleNumberOnPageAssumingFull;
+		} else {
+			highestResultOnPage = resultsNumber;
+		}
+
+		return (WebElement) By.xpath(
+				"/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/div/section/div[1]/div/div/div/div[2]/div/div[1]/div[3]/div["
+						+ highestResultOnPage + "]/div[1]/div/label");
 	}
 }
