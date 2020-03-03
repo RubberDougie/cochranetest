@@ -14,6 +14,11 @@ public class CochraneLibraryTopicSearchTest {
 
 	@Test
 	public void testStuffGoodNameIKnoww2() {
+
+		/*
+		 * Given
+		 */
+
 		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().setSize(new Dimension(900, 900));
@@ -23,9 +28,17 @@ public class CochraneLibraryTopicSearchTest {
 
 		assertTrue(cochraneLibrary.isInitialized());
 
+		/*
+		 * When
+		 */
+
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.visibilityOf(cochraneLibrary.getGastroSearchButton()));
 		CochraneLibraryTopicSearchResult cochraneLibraryTopicSearchResult = cochraneLibrary.gastroSearch();
+
+		/*
+		 * Then
+		 */
 
 		wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.attributeContains(cochraneLibraryTopicSearchResult.getCochraneReviewsTab(),

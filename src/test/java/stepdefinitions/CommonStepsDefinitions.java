@@ -9,6 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.kimschiller.selenium.FunctionalTests.CochraneCDSRReviews;
 import com.kimschiller.selenium.FunctionalTests.CochraneLibrary;
 import com.kimschiller.selenium.FunctionalTests.CochraneLibraryTopicSearchResult;
 import com.kimschiller.selenium.FunctionalTests.PageObject;
@@ -61,20 +62,38 @@ public class CommonStepsDefinitions {
 
 	@Given("the user opens the Cochrane CDSR Reviews page")
 	public void the_user_opens_the_Cochrane_CDSR_Reviews_page() {
-		// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().window().setSize(new Dimension(900, 900));
+		driver.navigate().to("https://www.cochranelibrary.com/cdsr/reviews");
+
+		CochraneCDSRReviews cochraneCDSRReviews = new CochraneCDSRReviews(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.attributeContains(cochraneCDSRReviews.getCochraneProtocolsTab(), "class", "tab"));
+
+		assertTrue(cochraneCDSRReviews.isInitialized());
+
+		currentPage = cochraneCDSRReviews;
 	}
 
 	@When("the user clicks the More button then the Clnical Answers button")
 	public void the_user_clicks_the_More_button_then_the_Clnical_Answers_button() {
-		// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+		CochraneCDSRReviews cochraneCDSRReviews = (CochraneCDSRReviews) currentPage;
+		cochraneCDSRReviews.navigateToClinicalAnswers();
+		currentPage = cochraneCDSRReviews;
 	}
 
 	@Then("the user is shown the Clinical Answers data")
 	public void the_user_is_shown_the_Clinical_Answers_data() {
-		// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+		CochraneCDSRReviews cochraneCDSRReviews = (CochraneCDSRReviews) currentPage;
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.attributeContains(cochraneCDSRReviews.getCochraneProtocolsAssertChecker(),
+				"class", ""));
+
+		String assertValue = cochraneCDSRReviews.getCochraneProtocolsAssertChecker().getText()
+				.contains("Clinical Answers") ? "True" : "False";
+		assertEquals("True", assertValue);
+		driver.close();
 	}
 
 	/*
@@ -86,14 +105,22 @@ public class CommonStepsDefinitions {
 
 	@When("the user clicks the Cochrane Protocols tab")
 	public void the_user_clicks_the_Cochrane_Protocols_tab() {
-		// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+		CochraneCDSRReviews cochraneCDSRReviews = (CochraneCDSRReviews) currentPage;
+		cochraneCDSRReviews.navigateToCochraneProtocols();
+		currentPage = cochraneCDSRReviews;
 	}
 
 	@Then("the user is shown the subset of reviews for that visible tab")
 	public void the_user_is_shown_the_subset_of_reviews_for_that_visible_tab() {
-		// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+		CochraneCDSRReviews cochraneCDSRReviews = (CochraneCDSRReviews) currentPage;
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.attributeContains(cochraneCDSRReviews.getCochraneProtocolsAssertChecker(),
+				"class", ""));
+
+		String assertValue = cochraneCDSRReviews.getCochraneProtocolsAssertChecker().getText()
+				.contains("Cochrane Protocols") ? "True" : "False";
+		assertEquals("True", assertValue);
+		driver.close();
 	}
 
 	/*
@@ -105,14 +132,23 @@ public class CommonStepsDefinitions {
 
 	@When("the user enters the start date, end date, then clicks the button")
 	public void the_user_enters_the_start_date_end_date_then_clicks_the_button() {
-		// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+		CochraneCDSRReviews cochraneCDSRReviews = (CochraneCDSRReviews) currentPage;
+		cochraneCDSRReviews.enterAndApplyDateRange1();
+		currentPage = cochraneCDSRReviews;
 	}
 
 	@Then("the user is shown data appropriate to the date range")
 	public void the_user_is_shown_data_appropriate_to_the_date_range() {
-		// Write code here that turns the phrase above into concrete actions
-		throw new io.cucumber.java.PendingException();
+		CochraneCDSRReviews cochraneCDSRReviews = (CochraneCDSRReviews) currentPage;
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.attributeContains(cochraneCDSRReviews.getCochraneProtocolsAssertChecker(),
+				"class", ""));
+
+		String assertValue = cochraneCDSRReviews.getCustomDateRangeAssertText().getText().contains("Custom date range")
+				? "True"
+				: "False";
+		assertEquals("True", assertValue);
+		driver.close();
 	}
 
 }

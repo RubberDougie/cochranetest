@@ -14,6 +14,11 @@ public class CochraneCDSRReviewsTest {
 
 	@Test
 	public void testStuffGoodNameIKnow() {
+
+		/*
+		 * Given
+		 */
+
 		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().setSize(new Dimension(900, 900));
@@ -25,7 +30,15 @@ public class CochraneCDSRReviewsTest {
 
 		assertTrue(cochraneCDSRReviews.isInitialized());
 
+		/*
+		 * When
+		 */
+
 		cochraneCDSRReviews.navigateToCochraneProtocols();
+
+		/*
+		 * Then
+		 */
 
 		wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.attributeContains(cochraneCDSRReviews.getCochraneProtocolsAssertChecker(),
@@ -39,6 +52,11 @@ public class CochraneCDSRReviewsTest {
 
 	@Test
 	public void testMoreTab() {
+
+		/*
+		 * Given
+		 */
+
 		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().setSize(new Dimension(900, 900));
@@ -50,7 +68,15 @@ public class CochraneCDSRReviewsTest {
 
 		assertTrue(cochraneCDSRReviews.isInitialized());
 
+		/*
+		 * When
+		 */
+
 		cochraneCDSRReviews.navigateToClinicalAnswers();
+
+		/*
+		 * Then
+		 */
 
 		wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.attributeContains(cochraneCDSRReviews.getCochraneProtocolsAssertChecker(),
@@ -60,11 +86,15 @@ public class CochraneCDSRReviewsTest {
 				.contains("Clinical Answers") ? "True" : "False";
 		assertEquals("True", assertValue);
 		driver.close();
-
 	}
 
 	@Test
 	public void testDateRangeInput1() {
+
+		/*
+		 * Given
+		 */
+
 		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().setSize(new Dimension(900, 900));
@@ -76,7 +106,15 @@ public class CochraneCDSRReviewsTest {
 
 		assertTrue(cochraneCDSRReviews.isInitialized());
 
+		/*
+		 * When
+		 */
+
 		cochraneCDSRReviews.enterAndApplyDateRange1();
+
+		/*
+		 * Then
+		 */
 
 		wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.attributeContains(cochraneCDSRReviews.getCochraneProtocolsAssertChecker(),
@@ -87,6 +125,5 @@ public class CochraneCDSRReviewsTest {
 				: "False";
 		assertEquals("True", assertValue);
 		driver.close();
-
 	}
 }
