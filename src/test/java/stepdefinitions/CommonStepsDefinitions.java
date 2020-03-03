@@ -59,4 +59,60 @@ public class CommonStepsDefinitions {
 		driver.close();
 	}
 
+	@Given("the user opens the Cochrane CDSR Reviews page")
+	public void the_user_opens_the_Cochrane_CDSR_Reviews_page() {
+		// Write code here that turns the phrase above into concrete actions
+		throw new io.cucumber.java.PendingException();
+	}
+
+	@When("the user clicks the More button then the Clnical Answers button")
+	public void the_user_clicks_the_More_button_then_the_Clnical_Answers_button() {
+		// Write code here that turns the phrase above into concrete actions
+		throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("the user is shown the Clinical Answers data")
+	public void the_user_is_shown_the_Clinical_Answers_data() {
+		// Write code here that turns the phrase above into concrete actions
+		throw new io.cucumber.java.PendingException();
+	}
+
+	/*
+	 * @Given("the user opens the Cochrane CDSR Reviews page") public void
+	 * the_user_opens_the_Cochrane_CDSR_Reviews_page() { // Write code here that
+	 * turns the phrase above into concrete actions throw new
+	 * io.cucumber.java.PendingException(); }
+	 */
+
+	@When("the user clicks the Cochrane Protocols tab")
+	public void the_user_clicks_the_Cochrane_Protocols_tab() {
+		// Write code here that turns the phrase above into concrete actions
+		throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("the user is shown the subset of reviews for that visible tab")
+	public void the_user_is_shown_the_subset_of_reviews_for_that_visible_tab() {
+		// Write code here that turns the phrase above into concrete actions
+		throw new io.cucumber.java.PendingException();
+	}
+
+	/*
+	 * @Given("the user opens the Cochrane CDSR Reviews page") public void
+	 * the_user_opens_the_Cochrane_CDSR_Reviews_page() { // Write code here that
+	 * turns the phrase above into concrete actions throw new
+	 * io.cucumber.java.PendingException(); }
+	 */
+
+	@When("the user enters the start date, end date, then clicks the button")
+	public void the_user_enters_the_start_date_end_date_then_clicks_the_button() {
+		// Write code here that turns the phrase above into concrete actions
+		throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("the user is shown data appropriate to the date range")
+	public void the_user_is_shown_data_appropriate_to_the_date_range() {
+		// Write code here that turns the phrase above into concrete actions
+		throw new io.cucumber.java.PendingException();
+	}
+
 }

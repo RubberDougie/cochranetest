@@ -1,6 +1,5 @@
-@test
 @test2
-Feature: Testing of arrow button functionality
+Feature: Testing of topic search navigation buttons from homepage
 
 Scenario: user opens https://www.cochranelibrary.com/ and hits the search button for Gastro
 	Given the user opens the Cochrane Library page
