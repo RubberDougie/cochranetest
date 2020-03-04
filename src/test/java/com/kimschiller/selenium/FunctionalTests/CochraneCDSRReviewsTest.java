@@ -207,6 +207,8 @@ public class CochraneCDSRReviewsTest {
 						"tab"));
 
 				assertTrue(cochraneCDSRReviews.isInitialized());
+			} else {
+				driver.close();
 			}
 		}
 	}
