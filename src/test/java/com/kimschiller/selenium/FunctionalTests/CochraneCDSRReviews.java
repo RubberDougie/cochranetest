@@ -182,8 +182,7 @@ public class CochraneCDSRReviews extends PageObject {
 	}
 
 	public int calculateModdedResultIndexForFurtherPages() {
-		int result = getHighestDisplayedResultNumber(getMaxResultsPerPage(), getResultsNumber(), getPageNumber())
-				% (getMaxResultsPerPage());
+		int result = getHighestDisplayedResultNumber() % (getMaxResultsPerPage());
 
 		if (result != 0) {
 			return result;
@@ -192,8 +191,9 @@ public class CochraneCDSRReviews extends PageObject {
 		}
 	}
 
-	public int getHighestDisplayedResultNumber(int maxResultsPerPage, int resultsNumber, int pageNumber) {
+	public int getHighestDisplayedResultNumber() {
 		int highestPossibleNumberOnPageAssumingFull = maxResultsPerPage * pageNumber;
+		int resultsNumber = getResultsNumber();
 
 		int highestResultOnPage;
 		if (resultsNumber > highestPossibleNumberOnPageAssumingFull) {

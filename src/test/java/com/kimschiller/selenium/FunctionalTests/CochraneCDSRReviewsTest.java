@@ -180,9 +180,7 @@ public class CochraneCDSRReviewsTest {
 			wait = new WebDriverWait(driver, 15);
 			wait.until(ExpectedConditions.visibilityOf(cochraneCDSRReviews.getResultsNumberElement()));
 
-			int expectedHighestResultOnPage = cochraneCDSRReviews.getHighestDisplayedResultNumber(
-					cochraneCDSRReviews.getMaxResultsPerPage(), cochraneCDSRReviews.getResultsNumber(),
-					cochraneCDSRReviews.getPageNumber());
+			int expectedHighestResultOnPage = cochraneCDSRReviews.getHighestDisplayedResultNumber();
 			// System.out.println(highestResultOnPage);
 			wait = new WebDriverWait(driver, 30);
 			// I have to use the shortened xpath or I can never locate this, why?
