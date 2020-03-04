@@ -16,7 +16,7 @@ import com.rubberdougie.stringthings.StringThings;
 
 public class CochraneCDSRReviewsTest {
 
-	// @Test
+	@Test
 	public void testStuffGoodNameIKnow() {
 
 		/*
@@ -54,7 +54,7 @@ public class CochraneCDSRReviewsTest {
 		driver.close();
 	}
 
-	// @Test
+	@Test
 	public void testMoreTab() {
 
 		/*
@@ -92,7 +92,7 @@ public class CochraneCDSRReviewsTest {
 		driver.close();
 	}
 
-	// @Test
+	@Test
 	public void testDateRangeInput1() {
 
 		/*
@@ -153,8 +153,6 @@ public class CochraneCDSRReviewsTest {
 		 * When
 		 */
 
-		System.out.println(cochraneCDSRReviews.getMaxNumberPerPageSelector().getText());
-
 		Actions actions = new Actions(driver);
 		actions.moveToElement(cochraneCDSRReviews.getMaxNumberPerPageSelector()).click().perform();
 		wait = new WebDriverWait(driver, 10);
@@ -166,13 +164,10 @@ public class CochraneCDSRReviewsTest {
 		/*
 		 * Then
 		 */
-		int testNumber = 1;
 
 		while (cochraneCDSRReviews.hasMorePages() == true) {
 			wait = new WebDriverWait(driver, 15);
 			wait.until(ExpectedConditions.visibilityOf(cochraneCDSRReviews.getResultsNumberElement()));
-
-			System.out.println(testNumber++);
 
 			int expectedHighestResultOnPage = cochraneCDSRReviews.getHighestDisplayedResultNumber(
 					cochraneCDSRReviews.getMaxResultsPerPage(), cochraneCDSRReviews.getResultsNumber(),
@@ -183,14 +178,11 @@ public class CochraneCDSRReviewsTest {
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"column-2\"]/div[1]/div[3]/div["
 					+ cochraneCDSRReviews.calculateModdedResultIndexForFurtherPages() + "]/div[1]/div/label")));
 
-			System.out.println("moo");
-
 			int currentLastResultNumber = Integer
 					.parseInt(cochraneCDSRReviews
 							.getLowerOfNthOrRemainderResultOnPage(cochraneCDSRReviews.getMaxResultsPerPage(),
 									cochraneCDSRReviews.getResultsNumber(), cochraneCDSRReviews.getPageNumber())
 							.getText());
-			System.out.println("currentLastResultNumber    " + currentLastResultNumber);
 			assertEquals(expectedHighestResultOnPage, currentLastResultNumber);
 
 			if (cochraneCDSRReviews.hasMorePages() == true) {

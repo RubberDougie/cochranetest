@@ -147,7 +147,6 @@ public class CochraneCDSRReviews extends PageObject {
 	}
 
 	public int getResultsNumber() {
-		System.out.println("test get results number func:    " + resultsNumber.getText());
 		return Integer.parseInt(resultsNumber.getText());
 	}
 
@@ -177,9 +176,14 @@ public class CochraneCDSRReviews extends PageObject {
 	}
 
 	public int calculateModdedResultIndexForFurtherPages() {
-		return ((getPageNumber() - 1
-				+ getHighestDisplayedResultNumber(getMaxResultsPerPage(), getResultsNumber(), getPageNumber()))
-				% (1 + getMaxResultsPerPage()));
+		int result = getHighestDisplayedResultNumber(getMaxResultsPerPage(), getResultsNumber(), getPageNumber())
+				% (getMaxResultsPerPage());
+
+		if (result != 0) {
+			return result;
+		} else {
+			return getMaxResultsPerPage();
+		}
 	}
 
 	public int getHighestDisplayedResultNumber(int maxResultsPerPage, int resultsNumber, int pageNumber) {
@@ -193,7 +197,6 @@ public class CochraneCDSRReviews extends PageObject {
 			hasMorePages = false; // a side-effect that might not be smart
 		}
 
-		System.out.println(highestResultOnPage);
 		return highestResultOnPage;
 	}
 
