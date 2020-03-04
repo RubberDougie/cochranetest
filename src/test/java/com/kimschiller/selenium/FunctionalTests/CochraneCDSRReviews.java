@@ -64,6 +64,8 @@ public class CochraneCDSRReviews extends PageObject {
 	@FindBy(xpath = "//*[@id=\"column-2\"]/div[2]/div/div[2]/a")
 	private WebElement nextPageButton;
 
+	private String maxResultsPerPageSelectionXpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/section/div[1]/div/div/div/div[2]/div/div[1]/div[2]/form/div[4]/div[2]/div[2]/div/select";
+
 	public CochraneCDSRReviews(WebDriver driver) {
 		super(driver);
 		this.pageNumber = 1;
@@ -156,6 +158,10 @@ public class CochraneCDSRReviews extends PageObject {
 
 	public boolean hasMorePages() {
 		return hasMorePages;
+	}
+
+	public String getMaxResultsPerPageSelectionXpath() {
+		return maxResultsPerPageSelectionXpath;
 	}
 
 	public int getMaxResultsPerPage() {

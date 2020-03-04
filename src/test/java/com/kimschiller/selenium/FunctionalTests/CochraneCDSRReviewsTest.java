@@ -159,6 +159,17 @@ public class CochraneCDSRReviewsTest {
 		wait.until(ExpectedConditions.visibilityOf(cochraneCDSRReviews.getMaxNumberPerPageSelectorList()));
 		actions.moveToElement(cochraneCDSRReviews.getMaxPerPageSelector50()).click().perform();
 
+		/*
+		 * This WOULD work if the drop down box in question ever updated to not hidden
+		 * in the DOM, but it doesn't. I think the website is bugged
+		 * 
+		 * 
+		 * Select maxResultsPerPageSelection = new Select(
+		 * driver.findElement(By.xpath(cochraneCDSRReviews.
+		 * getMaxResultsPerPageSelectionXpath())));
+		 * maxResultsPerPageSelection.selectByVisibleText("50");
+		 */
+
 		cochraneCDSRReviews.setMaxReulstsPerPage(50);
 
 		/*
@@ -207,9 +218,9 @@ public class CochraneCDSRReviewsTest {
 						"tab"));
 
 				assertTrue(cochraneCDSRReviews.isInitialized());
-			} else {
-				driver.close();
 			}
 		}
+
+		driver.close();
 	}
 }
