@@ -8,8 +8,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import com.rubberdougie.stringthings.StringThings;
 
 public class CochraneCDSRReviewsTest {
 
@@ -150,30 +153,69 @@ public class CochraneCDSRReviewsTest {
 		 * When
 		 */
 
+		System.out.println(cochraneCDSRReviews.getMaxNumberPerPageSelector().getText());
+
+		Actions actions = new Actions(driver);
+		actions.moveToElement(cochraneCDSRReviews.getMaxNumberPerPageSelector()).click().perform();
+		wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.visibilityOf(cochraneCDSRReviews.getMaxNumberPerPageSelectorList()));
+		actions.moveToElement(cochraneCDSRReviews.getMaxPerPageSelector50()).click().perform();
+
+		cochraneCDSRReviews.setMaxReulstsPerPage(50);
+
 		/*
 		 * Then
 		 */
+		int testNumber = 1;
 
-		wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.visibilityOf(cochraneCDSRReviews.getResultsNumberElement()));
+		while (cochraneCDSRReviews.hasMorePages() == true) {
+			wait = new WebDriverWait(driver, 15);
+			wait.until(ExpectedConditions.visibilityOf(cochraneCDSRReviews.getResultsNumberElement()));
 
-		int expectedHighestResultOnPage = cochraneCDSRReviews.getHighestDisplayedResultNumber(
-				cochraneCDSRReviews.getMaxResultsPerPage(), cochraneCDSRReviews.getResultsNumber(),
-				cochraneCDSRReviews.getPageNumber());
-		// System.out.println(highestResultOnPage);
-		wait = new WebDriverWait(driver, 10);
-		// I have to use the shortened xpath or I can never locate this, why?
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
-				"//*[@id=\"column-2\"]/div[1]/div[3]/div[" + expectedHighestResultOnPage + "]/div[1]/div/label")));
+			System.out.println(testNumber++);
 
-		System.out.println("moo");
+			int expectedHighestResultOnPage = cochraneCDSRReviews.getHighestDisplayedResultNumber(
+					cochraneCDSRReviews.getMaxResultsPerPage(), cochraneCDSRReviews.getResultsNumber(),
+					cochraneCDSRReviews.getPageNumber());
+			// System.out.println(highestResultOnPage);
+			wait = new WebDriverWait(driver, 30);
+			// I have to use the shortened xpath or I can never locate this, why?
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"column-2\"]/div[1]/div[3]/div["
+					+ cochraneCDSRReviews.calculateModdedResultIndexForFurtherPages() + "]/div[1]/div/label")));
 
-		int currentLastResultNumber = Integer
-				.parseInt(
-						cochraneCDSRReviews
-								.getLowerOfNthOrRemainderResultOnPage(cochraneCDSRReviews.getMaxResultsPerPage(),
-										cochraneCDSRReviews.getResultsNumber(), cochraneCDSRReviews.getPageNumber())
-								.getText());
-		assertEquals(expectedHighestResultOnPage, currentLastResultNumber);
+			System.out.println("moo");
+
+			int currentLastResultNumber = Integer
+					.parseInt(cochraneCDSRReviews
+							.getLowerOfNthOrRemainderResultOnPage(cochraneCDSRReviews.getMaxResultsPerPage(),
+									cochraneCDSRReviews.getResultsNumber(), cochraneCDSRReviews.getPageNumber())
+							.getText());
+			System.out.println("currentLastResultNumber    " + currentLastResultNumber);
+			assertEquals(expectedHighestResultOnPage, currentLastResultNumber);
+
+			if (cochraneCDSRReviews.hasMorePages() == true) {
+
+				/*
+				 * 
+				 * only doing first and last page
+				 * 
+				 */
+
+				String baseURL = StringThings
+						.removeEndDigits(cochraneCDSRReviews.getNextPageButton().getAttribute("href"));
+				int finalPageNumber = cochraneCDSRReviews.calculateHighestPageNumber();
+				String finalPageURL = baseURL + finalPageNumber;
+
+				driver.navigate().to(finalPageURL);
+
+				cochraneCDSRReviews = new CochraneCDSRReviews(driver, finalPageNumber,
+						cochraneCDSRReviews.getMaxResultsPerPage());
+				wait = new WebDriverWait(driver, 15);
+				wait.until(ExpectedConditions.attributeContains(cochraneCDSRReviews.getCochraneProtocolsTab(), "class",
+						"tab"));
+
+				assertTrue(cochraneCDSRReviews.isInitialized());
+			}
+		}
 	}
 }

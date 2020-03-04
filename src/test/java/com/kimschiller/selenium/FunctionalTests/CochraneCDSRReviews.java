@@ -13,8 +13,8 @@ public class CochraneCDSRReviews extends PageObject {
 	 */
 
 	private boolean hasMorePages = true;
-	private int pageNumber = 1;
-	private int maxResultsPerPage = 25; // default
+	private int pageNumber;
+	private int maxResultsPerPage;
 
 	@FindBy(xpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/section/div[1]/div/div/div/div[2]/div/div[1]/div[1]/ul/li[1]")
 	private WebElement cochraneReviewsTab;
@@ -52,20 +52,28 @@ public class CochraneCDSRReviews extends PageObject {
 	@FindBy(className = "results-number")
 	private WebElement resultsNumber;
 
-	@FindBy(xpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/div/section/div[1]/div/div/div/div[2]/div/div[1]/div[2]/form/div[4]/div[2]/div[2]/div/div")
+	@FindBy(xpath = "//*[@id=\"searchArticleForm\"]/div[4]/div[2]/div[2]/div/div")
 	private WebElement maxNumberPerPageSelector;
 
-	@FindBy(xpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/div/section/div[1]/div/div/div/div[2]/div/div[1]/div[2]/form/div[4]/div[2]/div[2]/div/ul")
+	@FindBy(xpath = "//*[@id=\"searchArticleForm\"]/div[4]/div[2]/div[2]/div/ul")
 	private WebElement maxNumberPerPageSelectorList;
 
-	@FindBy(xpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/div/section/div[1]/div/div/div/div[2]/div/div[1]/div[2]/form/div[4]/div[2]/div[2]/div/ul/li[3]")
+	@FindBy(xpath = "//*[@id=\"searchArticleForm\"]/div[4]/div[2]/div[2]/div/ul/li[3]")
 	private WebElement maxPerPageSelector50;
 
-	@FindBy(className = "pagination-next-link")
+	@FindBy(xpath = "//*[@id=\"column-2\"]/div[2]/div/div[2]/a")
 	private WebElement nextPageButton;
 
 	public CochraneCDSRReviews(WebDriver driver) {
 		super(driver);
+		this.pageNumber = 1;
+		this.maxResultsPerPage = 25;
+	}
+
+	public CochraneCDSRReviews(WebDriver driver, int pageNumber, int maxResultsPerPage) {
+		super(driver);
+		this.pageNumber = pageNumber;
+		this.maxResultsPerPage = maxResultsPerPage;
 	}
 
 	public boolean isInitialized() {
@@ -134,6 +142,10 @@ public class CochraneCDSRReviews extends PageObject {
 		return resultsNumber;
 	}
 
+	public WebElement getNextPageButton() {
+		return nextPageButton;
+	}
+
 	public int getResultsNumber() {
 		System.out.println("test get results number func:    " + resultsNumber.getText());
 		return Integer.parseInt(resultsNumber.getText());
@@ -159,6 +171,17 @@ public class CochraneCDSRReviews extends PageObject {
 		}
 	}
 
+	public int calculateHighestPageNumber() { // could just reimplement as calculate page number for a specified result
+												// number
+		return (Integer.parseInt(resultsNumber.getText()) / maxResultsPerPage) + 1;
+	}
+
+	public int calculateModdedResultIndexForFurtherPages() {
+		return ((getPageNumber() - 1
+				+ getHighestDisplayedResultNumber(getMaxResultsPerPage(), getResultsNumber(), getPageNumber()))
+				% (1 + getMaxResultsPerPage()));
+	}
+
 	public int getHighestDisplayedResultNumber(int maxResultsPerPage, int resultsNumber, int pageNumber) {
 		int highestPossibleNumberOnPageAssumingFull = maxResultsPerPage * pageNumber;
 
@@ -170,14 +193,16 @@ public class CochraneCDSRReviews extends PageObject {
 			hasMorePages = false; // a side-effect that might not be smart
 		}
 
+		System.out.println(highestResultOnPage);
 		return highestResultOnPage;
 	}
 
 	public WebElement getLowerOfNthOrRemainderResultOnPage(int maxResultsPerPage, int resultsNumber, int pageNumber) {
-		int highestResultOnPage = getHighestDisplayedResultNumber(maxResultsPerPage, resultsNumber, pageNumber);
+		// int highestResultOnPage = getHighestDisplayedResultNumber(maxResultsPerPage,
+		// resultsNumber, pageNumber);
 
-		return driver.findElement(
-				By.xpath("//*[@id=\"column-2\"]/div[1]/div[3]/div[" + highestResultOnPage + "]/div[1]/div/label"));
+		return driver.findElement(By.xpath("//*[@id=\"column-2\"]/div[1]/div[3]/div["
+				+ calculateModdedResultIndexForFurtherPages() + "]/div[1]/div/label"));
 	}
 
 	public WebElement getNextPageButtonAndIncreasePageNumber() {
