@@ -12,7 +12,9 @@ public class CochraneCDSRReviews extends PageObject {
 	 * https://www.cochranelibrary.com/cdsr/reviews
 	 */
 
-	boolean hasMorePages = true;
+	private boolean hasMorePages = true;
+	private int pageNumber = 1;
+	private int maxResultsPerPage = 25; // default
 
 	@FindBy(xpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/section/div[1]/div/div/div/div[2]/div/div[1]/div[1]/ul/li[1]")
 	private WebElement cochraneReviewsTab;
@@ -47,7 +49,7 @@ public class CochraneCDSRReviews extends PageObject {
 	@FindBy(id = "applyCustomRange")
 	private WebElement applyCustomRangeButton;
 
-	@FindBy(xpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/div/section/div[1]/div/div/div/div[2]/div/div[1]/div[2]/form/h2/span[1]")
+	@FindBy(className = "results-number")
 	private WebElement resultsNumber;
 
 	@FindBy(xpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/div/section/div[1]/div/div/div/div[2]/div/div[1]/div[2]/form/div[4]/div[2]/div[2]/div/div")
@@ -128,7 +130,36 @@ public class CochraneCDSRReviews extends PageObject {
 		return maxPerPageSelector50;
 	}
 
-	public WebElement getLowerOfNthOrRemainderResultOnPage(int maxResultsPerPage, int resultsNumber, int pageNumber) {
+	public WebElement getResultsNumberElement() {
+		return resultsNumber;
+	}
+
+	public int getResultsNumber() {
+		System.out.println("test get results number func:    " + resultsNumber.getText());
+		return Integer.parseInt(resultsNumber.getText());
+	}
+
+	public int getPageNumber() {
+		return pageNumber;
+	}
+
+	public boolean hasMorePages() {
+		return hasMorePages;
+	}
+
+	public int getMaxResultsPerPage() {
+		return maxResultsPerPage;
+	}
+
+	public boolean setMaxReulstsPerPage(int maxPerPage) {
+		if ((maxResultsPerPage = maxPerPage) == 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public int getHighestDisplayedResultNumber(int maxResultsPerPage, int resultsNumber, int pageNumber) {
 		int highestPossibleNumberOnPageAssumingFull = maxResultsPerPage * pageNumber;
 
 		int highestResultOnPage;
@@ -139,12 +170,19 @@ public class CochraneCDSRReviews extends PageObject {
 			hasMorePages = false; // a side-effect that might not be smart
 		}
 
-		return (WebElement) By.xpath(
-				"/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/div/section/div[1]/div/div/div/div[2]/div/div[1]/div[3]/div["
-						+ highestResultOnPage + "]/div[1]/div/label");
+		return highestResultOnPage;
 	}
 
-	public WebElement getNextPageButton() {
+	public WebElement getLowerOfNthOrRemainderResultOnPage(int maxResultsPerPage, int resultsNumber, int pageNumber) {
+		int highestResultOnPage = getHighestDisplayedResultNumber(maxResultsPerPage, resultsNumber, pageNumber);
+
+		return driver.findElement(By.xpath(
+				"/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/div/section/div[1]/div/div/div/div[2]/div/div[1]/div[3]/div["
+						+ highestResultOnPage + "]/div[1]/div/label"));
+	}
+
+	public WebElement getNextPageButtonAndIncreasePageNumber() {
+		pageNumber++;
 		return nextPageButton;
 	}
 }
