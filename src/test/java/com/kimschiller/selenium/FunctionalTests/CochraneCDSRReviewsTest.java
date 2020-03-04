@@ -150,22 +150,23 @@ public class CochraneCDSRReviewsTest {
 		 * When
 		 */
 
+		/*
+		 * Then
+		 */
+
 		wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.visibilityOf(cochraneCDSRReviews.getResultsNumberElement()));
 
-		int highestResultOnPage = cochraneCDSRReviews.getHighestDisplayedResultNumber(
+		int expectedHighestResultOnPage = cochraneCDSRReviews.getHighestDisplayedResultNumber(
 				cochraneCDSRReviews.getMaxResultsPerPage(), cochraneCDSRReviews.getResultsNumber(),
 				cochraneCDSRReviews.getPageNumber());
 		// System.out.println(highestResultOnPage);
 		wait = new WebDriverWait(driver, 10);
-		/*
-		 * wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath(
-		 * "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/div/section/div[1]/div/div/div/div[2]/div/div[1]/div[3]/div["
-		 * + highestResultOnPage + "]/div[1]/div/label"))));
-		 */
+		// I have to use the shortened xpath or I can never locate this, why?
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
-				"/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/div/section/div[1]/div/div/div/div[2]/div/div[1]/div[3]/div["
-						+ highestResultOnPage + "]/div[1]/div/label")));
+				"//*[@id=\"column-2\"]/div[1]/div[3]/div[" + expectedHighestResultOnPage + "]/div[1]/div/label")));
+
+		System.out.println("moo");
 
 		int currentLastResultNumber = Integer
 				.parseInt(
@@ -173,11 +174,6 @@ public class CochraneCDSRReviewsTest {
 								.getLowerOfNthOrRemainderResultOnPage(cochraneCDSRReviews.getMaxResultsPerPage(),
 										cochraneCDSRReviews.getResultsNumber(), cochraneCDSRReviews.getPageNumber())
 								.getText());
-		System.out.println("WHEN:   " + currentLastResultNumber);
-
-		/*
-		 * Then
-		 */
-
+		assertEquals(expectedHighestResultOnPage, currentLastResultNumber);
 	}
 }

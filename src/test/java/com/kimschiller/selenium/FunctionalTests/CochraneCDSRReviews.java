@@ -176,9 +176,8 @@ public class CochraneCDSRReviews extends PageObject {
 	public WebElement getLowerOfNthOrRemainderResultOnPage(int maxResultsPerPage, int resultsNumber, int pageNumber) {
 		int highestResultOnPage = getHighestDisplayedResultNumber(maxResultsPerPage, resultsNumber, pageNumber);
 
-		return driver.findElement(By.xpath(
-				"/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/div/section/div[1]/div/div/div/div[2]/div/div[1]/div[3]/div["
-						+ highestResultOnPage + "]/div[1]/div/label"));
+		return driver.findElement(
+				By.xpath("//*[@id=\"column-2\"]/div[1]/div[3]/div[" + highestResultOnPage + "]/div[1]/div/label"));
 	}
 
 	public WebElement getNextPageButtonAndIncreasePageNumber() {
