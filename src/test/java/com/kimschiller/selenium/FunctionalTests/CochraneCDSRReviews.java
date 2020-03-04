@@ -144,7 +144,7 @@ public class CochraneCDSRReviews extends PageObject {
 						+ highestResultOnPage + "]/div[1]/div/label");
 	}
 
-	public WebElement getNextPageButtion() {
+	public WebElement getNextPageButton() {
 		return nextPageButton;
 	}
 }
