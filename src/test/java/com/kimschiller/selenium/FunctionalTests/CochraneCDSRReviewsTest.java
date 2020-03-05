@@ -3,12 +3,16 @@ package com.kimschiller.selenium.FunctionalTests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -24,7 +28,16 @@ public class CochraneCDSRReviewsTest {
 		 */
 
 		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
+		new DesiredCapabilities();
+		DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+		WebDriver driver = null;
+		try {
+			driver = new RemoteWebDriver(new URL("http://localhost:4445/wd/hub"), capabilities);
+		} catch (MalformedURLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 		driver.manage().window().setSize(new Dimension(900, 900));
 		driver.navigate().to("https://www.cochranelibrary.com/cdsr/reviews");
 
@@ -62,7 +75,16 @@ public class CochraneCDSRReviewsTest {
 		 */
 
 		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
+		new DesiredCapabilities();
+		DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+		WebDriver driver = null;
+		try {
+			driver = new RemoteWebDriver(new URL("http://localhost:4445/wd/hub"), capabilities);
+		} catch (MalformedURLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 		driver.manage().window().setSize(new Dimension(900, 900));
 		driver.navigate().to("https://www.cochranelibrary.com/cdsr/reviews");
 
@@ -100,7 +122,16 @@ public class CochraneCDSRReviewsTest {
 		 */
 
 		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
+		new DesiredCapabilities();
+		DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+		WebDriver driver = null;
+		try {
+			driver = new RemoteWebDriver(new URL("http://localhost:4445/wd/hub"), capabilities);
+		} catch (MalformedURLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 		driver.manage().window().setSize(new Dimension(900, 900));
 		driver.navigate().to("https://www.cochranelibrary.com/cdsr/reviews");
 
@@ -139,7 +170,16 @@ public class CochraneCDSRReviewsTest {
 		 */
 
 		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
+		new DesiredCapabilities();
+		DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+		WebDriver driver = null;
+		try {
+			driver = new RemoteWebDriver(new URL("http://localhost:4445/wd/hub"), capabilities);
+		} catch (MalformedURLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 		driver.manage().window().setSize(new Dimension(900, 900));
 		driver.navigate().to("https://www.cochranelibrary.com/cdsr/reviews");
 
