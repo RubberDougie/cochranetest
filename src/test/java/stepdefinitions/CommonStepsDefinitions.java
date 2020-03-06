@@ -6,11 +6,13 @@ import static org.junit.Assert.assertTrue;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.kimschiller.selenium.FunctionalTests.ArticlePage;
 import com.kimschiller.selenium.FunctionalTests.CochraneCDSRReviews;
 import com.kimschiller.selenium.FunctionalTests.CochraneLibrary;
 import com.kimschiller.selenium.FunctionalTests.CochraneLibraryTopicSearchResult;
@@ -25,6 +27,7 @@ public class CommonStepsDefinitions {
 
 	public static WebDriver driver;
 	public PageObject currentPage;
+	public String firstResultTitle;
 
 	@Given("the user opens the Cochrane Library page")
 	public void the_user_opens_the_Cochrane_Library_page() {
@@ -233,6 +236,40 @@ public class CommonStepsDefinitions {
 				assertTrue(cochraneCDSRReviews.isInitialized());
 			}
 		}
+
+		driver.close();
+	}
+
+	/*
+	 * @Given("the user opens the Cochrane CDSR Reviews page") public void
+	 * the_user_opens_the_Cochrane_CDSR_Reviews_page() { // Write code here that
+	 * turns the phrase above into concrete actions throw new
+	 * io.cucumber.java.PendingException(); }
+	 */
+
+	@When("the user clicks the first article title")
+	public void the_user_clicks_the_first_article_title() {
+		CochraneCDSRReviews cochraneCDSRReviews = (CochraneCDSRReviews) currentPage;
+
+		WebElement firstResult = cochraneCDSRReviews.getFirstResult();
+		firstResultTitle = firstResult.getText().trim();
+
+		String firstResultURL = firstResult.getAttribute("href").trim();
+		driver.navigate().to(firstResultURL);
+		ArticlePage articlePage = cochraneCDSRReviews.getArticlePage();
+
+		currentPage = articlePage;
+	}
+
+	@Then("the user is shown an article page with the same article title as the clicked link")
+	public void the_user_is_shown_an_article_page_with_the_same_article_title_as_the_clicked_link() {
+		ArticlePage articlePage = (ArticlePage) currentPage;
+
+		WebDriverWait wait = new WebDriverWait(driver, 25);
+		wait.until(ExpectedConditions.visibilityOf(articlePage.getArticleNameElement()));
+		assertTrue(articlePage.isInitialized());
+
+		assertEquals(firstResultTitle, articlePage.getArticleNameElement().getText().trim());
 
 		driver.close();
 	}

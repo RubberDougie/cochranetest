@@ -17,7 +17,7 @@ import com.rubberdougie.stringthings.StringThings;
 
 public class CochraneCDSRReviewsTest {
 
-	// @Test
+	@Test
 	public void testStuffGoodNameIKnow() {
 
 		/*
@@ -55,7 +55,7 @@ public class CochraneCDSRReviewsTest {
 		driver.close();
 	}
 
-	// @Test
+	@Test
 	public void testMoreTab() {
 
 		/*
@@ -93,7 +93,7 @@ public class CochraneCDSRReviewsTest {
 		driver.close();
 	}
 
-	// @Test
+	@Test
 	public void testDateRangeInput1() {
 
 		/*
@@ -132,7 +132,7 @@ public class CochraneCDSRReviewsTest {
 		driver.close();
 	}
 
-	// @Test
+	@Test
 	public void nameHere() {
 
 		/*
