@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -16,7 +17,7 @@ import com.rubberdougie.stringthings.StringThings;
 
 public class CochraneCDSRReviewsTest {
 
-	@Test
+	// @Test
 	public void testStuffGoodNameIKnow() {
 
 		/*
@@ -54,7 +55,7 @@ public class CochraneCDSRReviewsTest {
 		driver.close();
 	}
 
-	@Test
+	// @Test
 	public void testMoreTab() {
 
 		/*
@@ -92,7 +93,7 @@ public class CochraneCDSRReviewsTest {
 		driver.close();
 	}
 
-	@Test
+	// @Test
 	public void testDateRangeInput1() {
 
 		/*
@@ -131,7 +132,7 @@ public class CochraneCDSRReviewsTest {
 		driver.close();
 	}
 
-	@Test
+	// @Test
 	public void nameHere() {
 
 		/*
@@ -211,13 +212,55 @@ public class CochraneCDSRReviewsTest {
 
 				cochraneCDSRReviews = new CochraneCDSRReviews(driver, finalPageNumber,
 						cochraneCDSRReviews.getMaxResultsPerPage());
-				wait = new WebDriverWait(driver, 15);
+				wait = new WebDriverWait(driver, 20);
 				wait.until(ExpectedConditions.attributeContains(cochraneCDSRReviews.getCochraneProtocolsTab(), "class",
 						"tab"));
 
 				assertTrue(cochraneCDSRReviews.isInitialized());
 			}
 		}
+
+		driver.close();
+	}
+
+	@Test
+	public void testToSeeIfSearchResultSendsToRightPage() {
+
+		/*
+		 * Given
+		 */
+
+		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().setSize(new Dimension(900, 900));
+		driver.navigate().to("https://www.cochranelibrary.com/cdsr/reviews");
+
+		CochraneCDSRReviews cochraneCDSRReviews = new CochraneCDSRReviews(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.attributeContains(cochraneCDSRReviews.getCochraneProtocolsTab(), "class", "tab"));
+
+		assertTrue(cochraneCDSRReviews.isInitialized());
+
+		/*
+		 * When
+		 */
+
+		WebElement firstResult = cochraneCDSRReviews.getFirstResult();
+		String firstResultTitle = firstResult.getText().trim();
+
+		String firstResultURL = firstResult.getAttribute("href").trim();
+		driver.navigate().to(firstResultURL);
+		ArticlePage articlePage = cochraneCDSRReviews.getArticlePage();
+
+		/*
+		 * Then
+		 */
+
+		wait = new WebDriverWait(driver, 25);
+		wait.until(ExpectedConditions.visibilityOf(articlePage.getArticleNameElement()));
+		assertTrue(articlePage.isInitialized());
+
+		assertEquals(firstResultTitle, articlePage.getArticleNameElement().getText().trim());
 
 		driver.close();
 	}

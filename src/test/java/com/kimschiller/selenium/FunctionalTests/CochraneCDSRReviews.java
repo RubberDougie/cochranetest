@@ -64,6 +64,9 @@ public class CochraneCDSRReviews extends PageObject {
 	@FindBy(xpath = "//*[@id=\"column-2\"]/div[2]/div/div[2]/a")
 	private WebElement nextPageButton;
 
+	@FindBy(xpath = "//*[@id=\"column-2\"]/div[1]/div[3]/div[1]/div[2]/h3/a")
+	private WebElement firstResult;
+
 	private String maxResultsPerPageSelectionXpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/section/div[1]/div/div/div/div[2]/div/div[1]/div[2]/form/div[4]/div[2]/div[2]/div/select";
 
 	public CochraneCDSRReviews(WebDriver driver) {
@@ -148,6 +151,10 @@ public class CochraneCDSRReviews extends PageObject {
 		return nextPageButton;
 	}
 
+	public WebElement getFirstResult() {
+		return firstResult;
+	}
+
 	public int getResultsNumber() {
 		return Integer.parseInt(resultsNumber.getText());
 	}
@@ -217,5 +224,9 @@ public class CochraneCDSRReviews extends PageObject {
 	public WebElement getNextPageButtonAndIncreasePageNumber() {
 		pageNumber++;
 		return nextPageButton;
+	}
+
+	public ArticlePage getArticlePage() {
+		return new ArticlePage(driver);
 	}
 }
