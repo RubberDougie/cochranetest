@@ -3,30 +3,24 @@ package com.rubberdougie.pageobjectsandtests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.rubberdougie.stringthings.StringThings;
 
-public class CochraneCDSRReviewsTest {
+public class CochraneCDSRReviewsTest extends GlobalPageMethods {
 
-	private WebDriver driver;
 	private WebDriverWait wait;
 	private CochraneCDSRReviews cochraneCDSRReviews;
 
 	@Before
 	public void beforeFunction() {
-		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
-		driver = new ChromeDriver();
 		driver.manage().window().setSize(new Dimension(900, 900));
 		driver.navigate().to("https://www.cochranelibrary.com/cdsr/reviews");
 
@@ -37,10 +31,9 @@ public class CochraneCDSRReviewsTest {
 		assertTrue(cochraneCDSRReviews.isInitialized());
 	}
 
-	@After
-	public void afterFunction() {
-		driver.close();
-	}
+	/*
+	 * @After public void afterFunction() { driver.close(); }
+	 */
 
 	@Test
 	public void testTabSwitchToCochraneProtocols() {

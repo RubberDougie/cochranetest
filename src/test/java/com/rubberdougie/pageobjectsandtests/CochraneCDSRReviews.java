@@ -103,7 +103,7 @@ public class CochraneCDSRReviews extends PageObject {
 		startDateInput.sendKeys("23/01/2011");
 		endDateInput.sendKeys("23/01/2019");
 		try {
-			Thread.sleep(200);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
