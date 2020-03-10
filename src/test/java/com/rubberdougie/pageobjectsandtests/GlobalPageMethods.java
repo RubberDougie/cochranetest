@@ -1,6 +1,5 @@
 package com.rubberdougie.pageobjectsandtests;
 
-import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
@@ -20,7 +19,7 @@ public class GlobalPageMethods {
 
 	@BeforeClass
 	public static void setUp() {
-		System.setProperty("webdriver.chrome.driver", "D:" + File.separator + "chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
