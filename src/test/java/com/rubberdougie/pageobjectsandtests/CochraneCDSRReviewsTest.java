@@ -21,7 +21,7 @@ public class CochraneCDSRReviewsTest {
 
 	private WebDriver driver;
 	private WebDriverWait wait;
-	CochraneCDSRReviews cochraneCDSRReviews;
+	private CochraneCDSRReviews cochraneCDSRReviews;
 
 	@Before
 	public void beforeFunction() {
