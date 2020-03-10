@@ -1,4 +1,4 @@
-package com.kimschiller.selenium.FunctionalTests;
+package com.rubberdougie.pageobjectsandtests;
 
 // https://www.cochranelibrary.com/
 

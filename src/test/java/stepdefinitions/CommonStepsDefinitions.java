@@ -12,11 +12,11 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.kimschiller.selenium.FunctionalTests.ArticlePage;
-import com.kimschiller.selenium.FunctionalTests.CochraneCDSRReviews;
-import com.kimschiller.selenium.FunctionalTests.CochraneLibrary;
-import com.kimschiller.selenium.FunctionalTests.CochraneLibraryTopicSearchResult;
-import com.kimschiller.selenium.FunctionalTests.PageObject;
+import com.rubberdougie.pageobjectsandtests.ArticlePage;
+import com.rubberdougie.pageobjectsandtests.CochraneCDSRReviews;
+import com.rubberdougie.pageobjectsandtests.CochraneLibrary;
+import com.rubberdougie.pageobjectsandtests.CochraneLibraryTopicSearchResult;
+import com.rubberdougie.pageobjectsandtests.PageObject;
 import com.rubberdougie.stringthings.StringThings;
 
 import io.cucumber.java.en.Given;

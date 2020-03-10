@@ -1,4 +1,4 @@
-package com.kimschiller.selenium.FunctionalTests;
+package com.rubberdougie.pageobjectsandtests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;

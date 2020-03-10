@@ -1,4 +1,4 @@
-package com.kimschiller.selenium.FunctionalTests;
+package com.rubberdougie.pageobjectsandtests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
