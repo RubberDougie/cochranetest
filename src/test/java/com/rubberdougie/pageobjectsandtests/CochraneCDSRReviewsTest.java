@@ -3,6 +3,8 @@ package com.rubberdougie.pageobjectsandtests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -17,23 +19,35 @@ import com.rubberdougie.stringthings.StringThings;
 
 public class CochraneCDSRReviewsTest {
 
+	private WebDriver driver;
+	private WebDriverWait wait;
+	CochraneCDSRReviews cochraneCDSRReviews;
+
+	@Before
+	public void beforeFunction() {
+		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().window().setSize(new Dimension(900, 900));
+		driver.navigate().to("https://www.cochranelibrary.com/cdsr/reviews");
+
+		cochraneCDSRReviews = new CochraneCDSRReviews(driver);
+		wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.attributeContains(cochraneCDSRReviews.getCochraneProtocolsTab(), "class", "tab"));
+
+		assertTrue(cochraneCDSRReviews.isInitialized());
+	}
+
+	@After
+	public void afterFunction() {
+		driver.close();
+	}
+
 	@Test
-	public void testStuffGoodNameIKnow() {
+	public void testTabSwitchToCochraneProtocols() {
 
 		/*
 		 * Given
 		 */
-
-		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().setSize(new Dimension(900, 900));
-		driver.navigate().to("https://www.cochranelibrary.com/cdsr/reviews");
-
-		CochraneCDSRReviews cochraneCDSRReviews = new CochraneCDSRReviews(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.attributeContains(cochraneCDSRReviews.getCochraneProtocolsTab(), "class", "tab"));
-
-		assertTrue(cochraneCDSRReviews.isInitialized());
 
 		/*
 		 * When
@@ -52,7 +66,6 @@ public class CochraneCDSRReviewsTest {
 		String assertValue = cochraneCDSRReviews.getCochraneProtocolsAssertChecker().getText()
 				.contains("Cochrane Protocols") ? "True" : "False";
 		assertEquals("True", assertValue);
-		driver.close();
 	}
 
 	@Test
@@ -61,17 +74,6 @@ public class CochraneCDSRReviewsTest {
 		/*
 		 * Given
 		 */
-
-		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().setSize(new Dimension(900, 900));
-		driver.navigate().to("https://www.cochranelibrary.com/cdsr/reviews");
-
-		CochraneCDSRReviews cochraneCDSRReviews = new CochraneCDSRReviews(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.attributeContains(cochraneCDSRReviews.getCochraneProtocolsTab(), "class", "tab"));
-
-		assertTrue(cochraneCDSRReviews.isInitialized());
 
 		/*
 		 * When
@@ -90,7 +92,6 @@ public class CochraneCDSRReviewsTest {
 		String assertValue = cochraneCDSRReviews.getCochraneProtocolsAssertChecker().getText()
 				.contains("Clinical Answers") ? "True" : "False";
 		assertEquals("True", assertValue);
-		driver.close();
 	}
 
 	@Test
@@ -99,17 +100,6 @@ public class CochraneCDSRReviewsTest {
 		/*
 		 * Given
 		 */
-
-		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().setSize(new Dimension(900, 900));
-		driver.navigate().to("https://www.cochranelibrary.com/cdsr/reviews");
-
-		CochraneCDSRReviews cochraneCDSRReviews = new CochraneCDSRReviews(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.attributeContains(cochraneCDSRReviews.getCochraneProtocolsTab(), "class", "tab"));
-
-		assertTrue(cochraneCDSRReviews.isInitialized());
 
 		/*
 		 * When
@@ -129,26 +119,14 @@ public class CochraneCDSRReviewsTest {
 				? "True"
 				: "False";
 		assertEquals("True", assertValue);
-		driver.close();
 	}
 
 	@Test
-	public void nameHere() {
+	public void testMaxResultsPerPageAndVerifyExpectedLastResultOnPages() {
 
 		/*
 		 * Given
 		 */
-
-		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().setSize(new Dimension(900, 900));
-		driver.navigate().to("https://www.cochranelibrary.com/cdsr/reviews");
-
-		CochraneCDSRReviews cochraneCDSRReviews = new CochraneCDSRReviews(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.attributeContains(cochraneCDSRReviews.getCochraneProtocolsTab(), "class", "tab"));
-
-		assertTrue(cochraneCDSRReviews.isInitialized());
 
 		/*
 		 * When
@@ -219,8 +197,6 @@ public class CochraneCDSRReviewsTest {
 				assertTrue(cochraneCDSRReviews.isInitialized());
 			}
 		}
-
-		driver.close();
 	}
 
 	@Test
@@ -229,17 +205,6 @@ public class CochraneCDSRReviewsTest {
 		/*
 		 * Given
 		 */
-
-		System.setProperty("webdriver.chrome.driver", "D:\\chromedriver.exe");
-		WebDriver driver = new ChromeDriver();
-		driver.manage().window().setSize(new Dimension(900, 900));
-		driver.navigate().to("https://www.cochranelibrary.com/cdsr/reviews");
-
-		CochraneCDSRReviews cochraneCDSRReviews = new CochraneCDSRReviews(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.attributeContains(cochraneCDSRReviews.getCochraneProtocolsTab(), "class", "tab"));
-
-		assertTrue(cochraneCDSRReviews.isInitialized());
 
 		/*
 		 * When
@@ -261,7 +226,5 @@ public class CochraneCDSRReviewsTest {
 		assertTrue(articlePage.isInitialized());
 
 		assertEquals(firstResultTitle, articlePage.getArticleNameElement().getText().trim());
-
-		driver.close();
 	}
 }
