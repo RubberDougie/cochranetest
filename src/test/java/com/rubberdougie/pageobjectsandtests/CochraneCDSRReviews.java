@@ -1,6 +1,7 @@
 package com.rubberdougie.pageobjectsandtests;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -101,9 +102,9 @@ public class CochraneCDSRReviews extends PageObject {
 
 	public void enterAndApplyDateRange1() {
 		startDateInput.sendKeys("23/01/2011");
-		endDateInput.sendKeys("23/01/2019");
+		endDateInput.sendKeys("23/01/2019", Keys.ENTER);
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(500);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

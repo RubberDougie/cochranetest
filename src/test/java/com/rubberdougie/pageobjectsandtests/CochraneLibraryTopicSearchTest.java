@@ -3,7 +3,6 @@ package com.rubberdougie.pageobjectsandtests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Dimension;
@@ -25,11 +24,6 @@ public class CochraneLibraryTopicSearchTest extends GlobalPageMethods {
 		assertTrue(cochraneLibrary.isInitialized());
 	}
 
-	@After
-	public void afterFunction() {
-		driver.close();
-	}
-
 	@Test
 	public void testTopicSearchButton() {
 
@@ -41,7 +35,7 @@ public class CochraneLibraryTopicSearchTest extends GlobalPageMethods {
 		 * When
 		 */
 
-		wait = new WebDriverWait(driver, 15);
+		wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOf(cochraneLibrary.getGastroSearchButton()));
 		CochraneLibraryTopicSearchResult cochraneLibraryTopicSearchResult = cochraneLibrary.gastroSearch();
 
@@ -49,7 +43,7 @@ public class CochraneLibraryTopicSearchTest extends GlobalPageMethods {
 		 * Then
 		 */
 
-		wait = new WebDriverWait(driver, 15);
+		wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.attributeContains(cochraneLibraryTopicSearchResult.getCochraneReviewsTab(),
 				"class", "tab"));
 		assertTrue(cochraneLibraryTopicSearchResult.isInitialized());

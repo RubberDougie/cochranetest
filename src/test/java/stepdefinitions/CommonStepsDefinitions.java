@@ -46,7 +46,7 @@ public class CommonStepsDefinitions {
 	@When("the user clicks the Gastroenterology & hepatology button")
 	public void the_user_clicks_the_Gastroenterology_hepatology_button() {
 		CochraneLibrary cochraneLibrary = (CochraneLibrary) currentPage;
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOf(cochraneLibrary.getGastroSearchButton()));
 		CochraneLibraryTopicSearchResult cochraneLibraryTopicSearchResult = cochraneLibrary.gastroSearch();
 		currentPage = cochraneLibraryTopicSearchResult;
@@ -56,7 +56,7 @@ public class CommonStepsDefinitions {
 	public void the_user_is_redirected_to_the_Gastroenterology_hepatology_search_page() {
 		CochraneLibraryTopicSearchResult cochraneLibraryTopicSearchResult = (CochraneLibraryTopicSearchResult) currentPage;
 
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.attributeContains(cochraneLibraryTopicSearchResult.getCochraneReviewsTab(),
 				"class", "tab"));
 		assertTrue(cochraneLibraryTopicSearchResult.isInitialized());
@@ -74,7 +74,7 @@ public class CommonStepsDefinitions {
 		driver.navigate().to("https://www.cochranelibrary.com/cdsr/reviews");
 
 		CochraneCDSRReviews cochraneCDSRReviews = new CochraneCDSRReviews(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.attributeContains(cochraneCDSRReviews.getCochraneProtocolsTab(), "class", "tab"));
 
 		assertTrue(cochraneCDSRReviews.isInitialized());
@@ -170,7 +170,7 @@ public class CommonStepsDefinitions {
 
 		Actions actions = new Actions(driver);
 		actions.moveToElement(cochraneCDSRReviews.getMaxNumberPerPageSelector()).click().perform();
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOf(cochraneCDSRReviews.getMaxNumberPerPageSelectorList()));
 		actions.moveToElement(cochraneCDSRReviews.getMaxPerPageSelector50()).click().perform();
 
@@ -195,7 +195,7 @@ public class CommonStepsDefinitions {
 		CochraneCDSRReviews cochraneCDSRReviews = (CochraneCDSRReviews) currentPage;
 
 		while (cochraneCDSRReviews.hasMorePages() == true) {
-			WebDriverWait wait = new WebDriverWait(driver, 15);
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.visibilityOf(cochraneCDSRReviews.getResultsNumberElement()));
 
 			int expectedHighestResultOnPage = cochraneCDSRReviews.getHighestDisplayedResultNumber();
@@ -229,7 +229,7 @@ public class CommonStepsDefinitions {
 
 				cochraneCDSRReviews = new CochraneCDSRReviews(driver, finalPageNumber,
 						cochraneCDSRReviews.getMaxResultsPerPage());
-				wait = new WebDriverWait(driver, 15);
+				wait = new WebDriverWait(driver, 30);
 				wait.until(ExpectedConditions.attributeContains(cochraneCDSRReviews.getCochraneProtocolsTab(), "class",
 						"tab"));
 
@@ -265,7 +265,7 @@ public class CommonStepsDefinitions {
 	public void the_user_is_shown_an_article_page_with_the_same_article_title_as_the_clicked_link() {
 		ArticlePage articlePage = (ArticlePage) currentPage;
 
-		WebDriverWait wait = new WebDriverWait(driver, 25);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOf(articlePage.getArticleNameElement()));
 		assertTrue(articlePage.isInitialized());
 

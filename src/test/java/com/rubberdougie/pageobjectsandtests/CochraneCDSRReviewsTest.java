@@ -25,7 +25,7 @@ public class CochraneCDSRReviewsTest extends GlobalPageMethods {
 		driver.navigate().to("https://www.cochranelibrary.com/cdsr/reviews");
 
 		cochraneCDSRReviews = new CochraneCDSRReviews(driver);
-		wait = new WebDriverWait(driver, 10);
+		wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.attributeContains(cochraneCDSRReviews.getCochraneProtocolsTab(), "class", "tab"));
 
 		assertTrue(cochraneCDSRReviews.isInitialized());
@@ -127,7 +127,7 @@ public class CochraneCDSRReviewsTest extends GlobalPageMethods {
 
 		Actions actions = new Actions(driver);
 		actions.moveToElement(cochraneCDSRReviews.getMaxNumberPerPageSelector()).click().perform();
-		wait = new WebDriverWait(driver, 10);
+		wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOf(cochraneCDSRReviews.getMaxNumberPerPageSelectorList()));
 		actions.moveToElement(cochraneCDSRReviews.getMaxPerPageSelector50()).click().perform();
 
@@ -149,7 +149,7 @@ public class CochraneCDSRReviewsTest extends GlobalPageMethods {
 		 */
 
 		while (cochraneCDSRReviews.hasMorePages() == true) {
-			wait = new WebDriverWait(driver, 15);
+			wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.visibilityOf(cochraneCDSRReviews.getResultsNumberElement()));
 
 			int expectedHighestResultOnPage = cochraneCDSRReviews.getHighestDisplayedResultNumber();
@@ -183,7 +183,7 @@ public class CochraneCDSRReviewsTest extends GlobalPageMethods {
 
 				cochraneCDSRReviews = new CochraneCDSRReviews(driver, finalPageNumber,
 						cochraneCDSRReviews.getMaxResultsPerPage());
-				wait = new WebDriverWait(driver, 20);
+				wait = new WebDriverWait(driver, 30);
 				wait.until(ExpectedConditions.attributeContains(cochraneCDSRReviews.getCochraneProtocolsTab(), "class",
 						"tab"));
 
@@ -214,7 +214,7 @@ public class CochraneCDSRReviewsTest extends GlobalPageMethods {
 		 * Then
 		 */
 
-		wait = new WebDriverWait(driver, 25);
+		wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.visibilityOf(articlePage.getArticleNameElement()));
 		assertTrue(articlePage.isInitialized());
 
