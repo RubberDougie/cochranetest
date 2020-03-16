@@ -1,0 +1,11 @@
+Requirements:
+	Make sure your IDE has JUnit 4+ support.
+
+Purpose:
+	Test various functionality of the Cochrane Library website using Selenium both with straight JUnit tests and also tests with Cucumber (BDD).
+	
+JUnit + Selenium:
+	Files located in ~/src/test/java/com/rubberdougie/pageobjectsandtests/*Test.java
+
+Cucumber + JUnit + Selenium:
+	Runner File located in ~/src/test/java/CucumberRunner/RunCukesTest.java
