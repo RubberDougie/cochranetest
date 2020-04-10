@@ -1,4 +1,4 @@
-package com.rubberdougie.pageobjectsandtests;
+package com.rubberdougie.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -9,7 +9,10 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class CochraneLibraryTopicSearchTest extends GlobalPageMethods {
+import com.rubberdougie.pageobjects.CochraneLibrary;
+import com.rubberdougie.pageobjects.CochraneLibraryTopicSearchResult;
+
+public class CochraneLibraryTopicSearchTest extends GlobalTestMethods {
 
 	private WebDriverWait wait;
 	private CochraneLibrary cochraneLibrary;

@@ -1,4 +1,4 @@
-package com.rubberdougie.pageobjectsandtests;
+package com.rubberdougie.pageobjects;
 
 // https://www.cochranelibrary.com/
 

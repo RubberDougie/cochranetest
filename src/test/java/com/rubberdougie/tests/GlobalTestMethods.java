@@ -1,4 +1,4 @@
-package com.rubberdougie.pageobjectsandtests;
+package com.rubberdougie.tests;
 
 import java.util.concurrent.TimeUnit;
 
@@ -9,11 +9,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
- * <strong>GlobalPageMethods</strong> handles setup and teardown of WebDriver.
+ * <strong>GlobalTestMethods</strong> handles setup and teardown of WebDriver.
  * 
  * original @author Kim Schiller modified @author Douglas Siano
  */
-public class GlobalPageMethods {
+public class GlobalTestMethods {
 
 	protected static WebDriver driver;
 

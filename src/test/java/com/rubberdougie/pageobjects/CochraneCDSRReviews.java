@@ -1,4 +1,4 @@
-package com.rubberdougie.pageobjectsandtests;
+package com.rubberdougie.pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;

@@ -1,4 +1,4 @@
-package com.rubberdougie.pageobjectsandtests;
+package com.rubberdougie.pageobjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;

@@ -1,4 +1,4 @@
-package com.rubberdougie.pageobjectsandtests;
+package com.rubberdougie.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -12,9 +12,11 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.rubberdougie.pageobjects.ArticlePage;
+import com.rubberdougie.pageobjects.CochraneCDSRReviews;
 import com.rubberdougie.stringthings.StringThings;
 
-public class CochraneCDSRReviewsTest extends GlobalPageMethods {
+public class CochraneCDSRReviewsTest extends GlobalTestMethods {
 
 	private WebDriverWait wait;
 	private CochraneCDSRReviews cochraneCDSRReviews;
