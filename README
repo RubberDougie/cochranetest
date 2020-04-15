@@ -1,6 +1,8 @@
 Requirements:
 	Make sure your IDE has JUnit 4+ support.
 	
+	You may need to download the latest chromedriver.exe from google and put it in this project's root directory, especially if your system isn't Windows.
+	
 	Guide: Download Eclipse IDE with Java support, install the following plugins: "Natural 0.7.6" or greater, "Maven Integration" and install Maven on your machine.
 
 Purpose:
@@ -14,3 +16,5 @@ Cucumber + JUnit + Selenium:
 	
 
 How to run: type "mvn test" in the console at the projects root directory.
+
+Disclaimer: The structure of the elements on the website may change and thus break the tests I am doing. As of the middle of March 2020, all tests were successful.
