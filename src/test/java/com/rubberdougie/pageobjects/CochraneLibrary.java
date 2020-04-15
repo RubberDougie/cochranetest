@@ -8,7 +8,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class CochraneLibrary extends PageObject {
 
-	@FindBy(xpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div[1]/div/div/div[2]/section/div[1]/div/div/div[1]/div/div/div[2]/div[1]/div/section/div[1]/div/div/div/div[2]/div/div[2]/dl/dd[1]/ul/li[1]/a/button")
+	@FindBy(xpath = "//*[@id=\"portlet_scolaristopics_WAR_scolaristopics\"]/div[1]/div/div/div/div[2]/div/div[2]/dl/dd[1]/ul/li[1]/a/button")
 	private WebElement gastroSearchButton;
 
 	@FindBy(xpath = "/html/head/meta[2]")

@@ -6,10 +6,10 @@ import org.openqa.selenium.support.FindBy;
 
 public class CochraneLibraryTopicSearchResult extends PageObject {
 
-	@FindBy(xpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/section/div[1]/div/div/div/div[2]/div/div[1]/div[1]/ul/li[1]")
+	@FindBy(xpath = "//*[@id=\"column-2\"]/div[1]/div[1]/ul/li[1]")
 	private WebElement cochraneReviewsTab;
 
-	@FindBy(xpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/section/div[1]/div/div/div/div[2]/div/div[1]/div[2]/form/div[1]/ul/li/ul/li/span/a")
+	@FindBy(xpath = "//*[@id=\"facetDisplaySection\"]/ul/li/ul/li/span/a")
 	private WebElement topicTitle1;
 
 	public CochraneLibraryTopicSearchResult(WebDriver driver) {
