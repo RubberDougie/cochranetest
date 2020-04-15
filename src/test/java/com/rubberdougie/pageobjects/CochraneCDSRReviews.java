@@ -17,28 +17,28 @@ public class CochraneCDSRReviews extends PageObject {
 	private int pageNumber;
 	private int maxResultsPerPage;
 
-	@FindBy(xpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/section/div[1]/div/div/div/div[2]/div/div[1]/div[1]/ul/li[1]")
+	@FindBy(xpath = "//*[@id=\"column-2\"]/div[1]/div[1]/ul/li[1]")
 	private WebElement cochraneReviewsTab;
 
-	@FindBy(xpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/section/div[1]/div/div/div/div[2]/div/div[1]/div[1]/ul/li[1]/a/span[1]")
+	@FindBy(xpath = "//*[@id=\"column-2\"]/div[1]/div[1]/ul/li[1]/a/span[1]")
 	private WebElement cochraneReviewsTabClickableText;
 
-	@FindBy(xpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/section/div[1]/div/div/div/div[2]/div/div[1]/div[1]/ul/li[2]")
+	@FindBy(xpath = "//*[@id=\"column-2\"]/div[1]/div[1]/ul/li[2]")
 	private WebElement cochraneProtocolsTab;
 
-	@FindBy(xpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/section/div[1]/div/div/div/div[2]/div/div[1]/div[1]/ul/li[2]/a/span[1]")
+	@FindBy(xpath = "//*[@id=\"column-2\"]/div[1]/div[1]/ul/li[2]/a/span[1]")
 	private WebElement cochraneProtocolsTabClickableText;
 
-	@FindBy(xpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/div/section/div[1]/div/div/div/div[2]/div/div[1]/div[2]/form/h2")
+	@FindBy(xpath = "//*[@id=\"searchArticleForm\"]/h2")
 	private WebElement cochraneProtocolsAssertChecker;
 
-	@FindBy(xpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/section/div[1]/div/div/div/div[2]/div/div[1]/div[1]/ul/li[8]/a/span[1]")
+	@FindBy(xpath = "//*[@id=\"column-2\"]/div[1]/div[1]/ul/li[8]/a/span[1]")
 	private WebElement moreTabClickableText;
 
-	@FindBy(xpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/section/div[1]/div/div/div/div[2]/div/div[1]/div[1]/ul/li[8]/div/ul/li[3]/a/span[1]")
+	@FindBy(xpath = "//*[@id=\"column-2\"]/div[1]/div[1]/ul/li[8]/div/ul/li[1]/a/span[1]")
 	private WebElement clinicalAnswersClickableTextUnderMore; // for 900x900
 
-	@FindBy(xpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/div/section/div[1]/div/div/div/div[2]/div/div[1]/div[2]/form/div[1]/ul/li/ul/li/span/a")
+	@FindBy(xpath = "//*[@id=\"facetDisplaySection\"]/ul/li/ul/li/span/a")
 	private WebElement customDateRangeAssertText;
 
 	@FindBy(id = "customRangeFrom")
@@ -68,7 +68,7 @@ public class CochraneCDSRReviews extends PageObject {
 	@FindBy(xpath = "//*[@id=\"column-2\"]/div[1]/div[3]/div[1]/div[2]/h3/a")
 	private WebElement firstResult;
 
-	private String maxResultsPerPageSelectionXpath = "/html/body/div[1]/div[4]/div[1]/div[2]/div/div/div/div[1]/section/div[1]/div/div/div/div[2]/div/div[1]/div[2]/form/div[4]/div[2]/div[2]/div/select";
+	private String maxResultsPerPageSelectionXpath = "//*[@id=\"searchArticleForm\"]/div[4]/div[2]/div[2]/div/select";
 
 	public CochraneCDSRReviews(WebDriver driver) {
 		super(driver);
