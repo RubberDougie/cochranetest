@@ -29,7 +29,7 @@ public class CochraneCDSRReviews extends PageObject {
 	@FindBy(xpath = "//*[@id=\"column-2\"]/div[1]/div[1]/ul/li[2]/a/span[1]")
 	private WebElement cochraneProtocolsTabClickableText;
 
-	@FindBy(xpath = "//*[@id=\"searchArticleForm\"]/h2")
+	@FindBy(xpath = "/html/body/div[1]/div[5]/div[1]/div[2]/div/div/div/div[1]/div/section/div[1]/div/div/div/div[2]/div/div[1]/div[2]/form/h2")
 	private WebElement cochraneProtocolsAssertChecker;
 
 	@FindBy(xpath = "//*[@id=\"column-2\"]/div[1]/div[1]/ul/li[8]/a/span[1]")
@@ -38,7 +38,7 @@ public class CochraneCDSRReviews extends PageObject {
 	@FindBy(xpath = "//*[@id=\"column-2\"]/div[1]/div[1]/ul/li[8]/div/ul/li[1]/a/span[1]")
 	private WebElement clinicalAnswersClickableTextUnderMore; // for 900x900
 
-	@FindBy(xpath = "//*[@id=\"facetDisplaySection\"]/ul/li/ul/li/span/a")
+	@FindBy(xpath = "/html/body/div[1]/div[5]/div[1]/div[2]/div/div/div/div[1]/div/section/div[1]/div/div/div/div[2]/div/div[1]/div[2]/form/div[1]/ul/li/ul/li/span/a")
 	private WebElement customDateRangeAssertText;
 
 	@FindBy(id = "customRangeFrom")
